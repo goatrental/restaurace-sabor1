@@ -1,8 +1,11 @@
-import { prisma } from "@/lib/prisma";
+import { prisma, ensureSeeded } from "@/lib/prisma";
 import { AdventureCard } from "@/components/public/adventure-card";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
+  await ensureSeeded();
   const adventures = await prisma.adventure.findMany({
     where: { isActive: true },
     orderBy: { createdAt: "desc" },

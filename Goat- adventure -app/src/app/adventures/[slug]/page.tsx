@@ -1,15 +1,18 @@
-import { prisma } from "@/lib/prisma";
+import { prisma, ensureSeeded } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import { ScheduleTimeline } from "@/components/public/schedule-timeline";
 import { PriceSection } from "@/components/public/price-section";
 import { BookingForm } from "@/components/public/booking-form";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdventureDetailPage({
   params,
 }: {
   params: { slug: string };
 }) {
+  await ensureSeeded();
   const adventure = await prisma.adventure.findUnique({
     where: { slug: params.slug },
   });
