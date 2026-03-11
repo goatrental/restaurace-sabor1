@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime @default(now())
+}
+
+model Adventure {
+  id            String    @id @default(cuid())
+  title         String
+  slug          String    @unique
+  description   String
+  scheduleJson  String
+  adultPrice    Float
+  childPrice    Float
+  childFreeNote String    @default("")
+  imageUrl      String    @default("")
+  youtubeUrl    String    @default("")
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  bookings      Booking[]
+}
+
+model Booking {
+  id            String    @id @default(cuid())
+  adventureId   String
+  adventure     Adventure @relation(fields: [adventureId], references: [id])
+  customerName  String
+  customerEmail String
+  customerPhone String
+  date          DateTime
+  adults        Int
+  children      Int
+  message       String    @default("")
+  status        String    @default("NEW")
+  totalPrice    Float
+  createdAt     DateTime  @default(now())
+}
