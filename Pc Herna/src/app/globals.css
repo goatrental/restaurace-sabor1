@@ -1,0 +1,207 @@
+@import "tailwindcss";
+
+:root {
+  --background: #050505;
+  --foreground: #e4e4e7;
+  --accent: #ff6a00;
+  --accent-glow: #e55a00;
+  --accent-red: #cc2200;
+  --card-bg: #0c0c0c;
+  --card-border: #1a1a1a;
+  --muted: #6b6b6b;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-glow: var(--accent-glow);
+  --color-accent-red: var(--accent-red);
+  --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32' fill='none'%3E%3Ccircle cx='16' cy='16' r='12' stroke='%23ff6a00' stroke-width='1.5' opacity='0.7'/%3E%3Ccircle cx='16' cy='16' r='5' stroke='%23ff6a00' stroke-width='1' opacity='0.5'/%3E%3Cline x1='16' y1='1' x2='16' y2='8' stroke='%23ff6a00' stroke-width='2'/%3E%3Cline x1='16' y1='24' x2='16' y2='31' stroke='%23ff6a00' stroke-width='2'/%3E%3Cline x1='1' y1='16' x2='8' y2='16' stroke='%23ff6a00' stroke-width='2'/%3E%3Cline x1='24' y1='16' x2='31' y2='16' stroke='%23ff6a00' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='2' fill='%23ff6a00'/%3E%3C/svg%3E") 16 16, crosshair;
+}
+
+a, button {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32' fill='none'%3E%3Ccircle cx='16' cy='16' r='12' stroke='%23ff6a00' stroke-width='2' opacity='0.9'/%3E%3Ccircle cx='16' cy='16' r='5' stroke='%23ff6a00' stroke-width='1.5' opacity='0.7'/%3E%3Cline x1='16' y1='1' x2='16' y2='8' stroke='%23ff6a00' stroke-width='2'/%3E%3Cline x1='16' y1='24' x2='16' y2='31' stroke='%23ff6a00' stroke-width='2'/%3E%3Cline x1='1' y1='16' x2='8' y2='16' stroke='%23ff6a00' stroke-width='2'/%3E%3Cline x1='24' y1='16' x2='31' y2='16' stroke='%23ff6a00' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23ff6a00'/%3E%3C/svg%3E") 16 16, crosshair;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: #222; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #333; }
+
+/* Fire glow utility */
+.neon-glow {
+  box-shadow: 0 0 15px rgba(255, 106, 0, 0.4), 0 0 45px rgba(255, 106, 0, 0.15);
+}
+
+.neon-text {
+  text-shadow: 0 0 10px rgba(255, 106, 0, 0.6), 0 0 40px rgba(255, 106, 0, 0.25), 0 0 80px rgba(204, 34, 0, 0.15);
+}
+
+/* Games marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Pulse border */
+@keyframes pulseBorder {
+  0%, 100% { border-color: rgba(255, 106, 0, 0.3); }
+  50% { border-color: rgba(255, 106, 0, 0.7); }
+}
+.animate-pulse-border {
+  animation: pulseBorder 2s ease-in-out infinite;
+}
+
+/* Grid pattern background */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 106, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 106, 0, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Ember particles */
+@keyframes ember {
+  0% { transform: translateY(0) scale(1); opacity: 0.8; }
+  100% { transform: translateY(-200px) scale(0); opacity: 0; }
+}
+.animate-ember {
+  animation: ember 3s ease-out infinite;
+}
+
+/* CRT / old TV glitch on hero image */
+@keyframes crtFlicker {
+  0% { opacity: 1; }
+  3% { opacity: 0.85; }
+  4% { opacity: 1; }
+  7% { opacity: 0.9; transform: translate(0); }
+  8% { opacity: 0.6; transform: translate(-3px, 1px); }
+  9% { opacity: 1; transform: translate(0); }
+  20% { opacity: 1; }
+  21% { opacity: 0.7; transform: translate(2px, 0); }
+  22% { opacity: 1; transform: translate(0); }
+  50% { opacity: 1; }
+  51% { opacity: 0.8; transform: translate(-1px, -1px); }
+  52% { opacity: 1; transform: translate(0); }
+  75% { opacity: 1; }
+  76% { opacity: 0.85; }
+  77% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes scanlines {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 4px; }
+}
+
+@keyframes rgbSplit {
+  0% { text-shadow: none; filter: none; }
+  2% { filter: hue-rotate(90deg) saturate(2); }
+  4% { filter: none; }
+  30% { filter: none; }
+  31% { filter: hue-rotate(-30deg) brightness(1.5); }
+  33% { filter: none; }
+  70% { filter: none; }
+  71% { filter: saturate(3) contrast(1.2); }
+  73% { filter: none; }
+  100% { filter: none; }
+}
+
+.crt-glitch {
+  animation: crtFlicker 4s ease-in-out 3.5s 2;
+}
+
+.crt-glitch::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
+  );
+  animation: scanlines 0.1s linear infinite;
+  pointer-events: none;
+  opacity: 0;
+  animation: crtScanShow 0.5s 3.5s ease-out forwards;
+}
+
+@keyframes crtScanShow {
+  0% { opacity: 0; }
+  30% { opacity: 0.6; }
+  100% { opacity: 0; }
+}
+
+/* Crosshair hunting animation */
+@keyframes crosshairHunt {
+  0% { top: 25%; left: 20%; transform: translate(-50%, -50%); }
+  18% { top: 25%; left: 20%; transform: translate(-50%, -50%); }
+  25% { top: 60%; left: 75%; transform: translate(-50%, -50%); }
+  40% { top: 60%; left: 75%; transform: translate(-50%, -50%); }
+  48% { top: 35%; left: 65%; transform: translate(-50%, -50%); }
+  58% { top: 35%; left: 65%; transform: translate(-50%, -50%); }
+  65% { top: 70%; left: 25%; transform: translate(-50%, -50%); }
+  75% { top: 70%; left: 25%; transform: translate(-50%, -50%); }
+  85% { top: 45%; left: 50%; transform: translate(-50%, -50%); }
+  100% { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+}
+.animate-crosshair-hunt {
+  animation: crosshairHunt 2s ease-in-out forwards;
+}
+
+/* Crosshair lock pulse */
+@keyframes crosshairLock {
+  0% { transform: scale(1); opacity: 1; }
+  25% { transform: scale(1.3); opacity: 0.7; }
+  50% { transform: scale(0.8); opacity: 1; }
+  75% { transform: scale(1.1); opacity: 0.8; }
+  100% { transform: scale(0); opacity: 0; }
+}
+.animate-crosshair-lock {
+  animation: crosshairLock 0.6s ease-in-out forwards;
+}
+
+/* Soldier silhouette appear */
+@keyframes soldierAppear {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(var(--tw-scale-x, 1)) translateY(10px); }
+  30% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+/* Soldier target flash */
+@keyframes soldierFlash {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
