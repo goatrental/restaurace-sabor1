@@ -62,3 +62,8 @@ Vypíše se červeně přes celou buňku.
   chyběla, stránka se vykreslí prázdná místo chyby 500.
 * Multi-website: `website_id` není nastavené, stránka je tedy na všech webech
   v databázi. Pro omezení jen na Elite Vet doplnit pole do záznamu `website.page`.
+
+## Nasazení přes Docker
+
+Podrobný postup pro Odoo v Dockeru (addons volume, práva, instalace přes
+`docker compose exec`, řešení potíží) je v [`../DOCKER.md`](../DOCKER.md).
